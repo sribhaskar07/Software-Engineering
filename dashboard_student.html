@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard - CHMS</title>
+    <link rel="stylesheet" href="css/student_dashboard.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Student</h2>
+        <ul>
+            <li><a href="#" onclick="showSection('home')">Home</a></li>
+            <li><a href="#" onclick="showSection('submitHealth')">Submit Health Record</a></li>
+            <li><a href="#" onclick="showSection('appointment')">Book Appointment</a></li>
+            <li><a href="#" onclick="showSection('notifications')">Notifications</a></li>
+            <li><a href="../php/logout.php">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div id="home" class="section">
+            <h1>Welcome to CHMS Student Dashboard</h1>
+            <p>Select an option from the sidebar to get started.</p>
+        </div>
+
+        <div id="submitHealth" class="section" style="display:none;">
+            <h2>Submit Health Record</h2>
+            <form action="php/submit_health.php" method="POST">
+                <label for="symptoms">Symptoms:</label><br>
+                <textarea name="symptoms" id="symptoms" required></textarea><br><br>
+
+                <label for="temperature">Body Temperature (°C):</label><br>
+                <input type="number" name="temperature" step="0.1" required><br><br>
+
+                <label for="date">Date:</label><br>
+                <input type="date" name="date" required><br><br>
+
+                <button type="submit">Submit Record</button>
+            </form>
+        </div>
+
+        <div id="appointment" class="section" style="display:none;">
+            <h2>Book Appointment</h2>
+            <div class="tab-content" id="book-appointment">
+                <h2>Book Appointment</h2>
+                <form action="book_appointment.php" method="POST" class="form-container">
+                    <label for="date">Date:</label><br>
+                    <input type="date" name="date" required class="input-field"><br><br>
+            
+                    <label for="time">Time:</label><br>
+                    <input type="time" name="time" required class="input-field"><br><br>
+            
+                    <label for="reason">Reason:</label><br>
+                    <textarea name="reason" rows="4" cols="50" required class="input-field"></textarea><br><br>
+            
+                    <button type="submit" class="submit-button">Book Appointment</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <div id="notifications" class="section" style="display:none;">
+            <h2>Notifications</h2>
+            <p>No new notifications.</p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
